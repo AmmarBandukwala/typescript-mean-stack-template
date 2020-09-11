@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {  
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "importHelpers": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "baseUrl": "./",
+    "outDir": "./dist",
+    "target": "es5",
+    "module": "commonjs",
+    "lib": [
+      "es6",
+      "dom"
+    ], 
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+  }
+}
