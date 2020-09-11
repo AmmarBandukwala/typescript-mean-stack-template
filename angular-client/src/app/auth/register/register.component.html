@@ -1,0 +1,47 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Create an Account</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="example-form">
+      <table class="example-full-width" cellspacing="0" [formGroup]="userForm">
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Fullname" formControlName="fullname" name="fullname" required>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Email" formControlName="email" name="email" required>
+              <mat-error *ngIf="email.invalid && email.hasError('email')">Invalid email address</mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Password" formControlName="password" type="password" name="password" required>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Repeat Password" formControlName="repeatPassword" type="password" name="repeatPassword" required>
+              <mat-error *ngIf="repeatPassword.invalid && repeatPassword.hasError('passwordMatch')">Password mismatch</mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <div class="loginButton"><button mat-raised-button (click)="register()" color="primary">Register</button></div>
+  </mat-card-actions>
+  <mat-card-footer>
+    <div class="loginFooter">Already have an account? <a [routerLink]="['/auth/login']">Login</a></div>
+  </mat-card-footer>
+</mat-card>
