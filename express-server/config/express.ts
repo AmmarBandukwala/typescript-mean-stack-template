@@ -21,17 +21,6 @@ export default function () {
     app.use(logger("dev"));
   }
 
-  // frontend target distribution folder
-  var distDir = "../../dist/";
-
-  app.use(express.static(path.join(__dirname, distDir)));
-
-  app.use(/^((?!(api)).)*/, (req, res) => {
-    res.sendFile(path.join(__dirname, distDir + "/index.html"));
-  });
-
-  console.log(distDir);
-
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -46,6 +35,10 @@ export default function () {
   app.use(cors());
 
   app.use(passport().initialize());
+
+  app.use(/^((?!(api)).)*/, (req, res) => {
+      res.redirect("/api-docs");
+  });
 
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
