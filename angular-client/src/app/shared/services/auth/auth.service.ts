@@ -7,6 +7,7 @@ import { tap, pluck } from 'rxjs/operators';
 import { User } from '../../../shared/interfaces';
 
 import { TokenStorage } from './token.storage';
+import { environment } from '../../../../environments/environment';
 
 interface AuthResponse {
   token: string;
@@ -21,7 +22,10 @@ export class AuthService {
 
   login(email: string, password: string): Observable<User> {
     return this.http
-      .post<AuthResponse>('/api/auth/login', { email, password })
+      .post<AuthResponse>(environment.baseApiUri + '/api/auth/login', {
+        email,
+        password,
+      })
       .pipe(
         tap(({ token, user }) => {
           this.setUser(user);
@@ -38,7 +42,7 @@ export class AuthService {
     repeatPassword: string
   ): Observable<User> {
     return this.http
-      .post<AuthResponse>('/api/auth/register', {
+      .post<AuthResponse>(environment.baseApiUri + '/api/auth/register', {
         fullname,
         email,
         password,
@@ -73,10 +77,12 @@ export class AuthService {
       return EMPTY;
     }
 
-    return this.http.get<AuthResponse>('/api/auth/me').pipe(
-      tap(({ user }) => this.setUser(user)),
-      pluck('user')
-    );
+    return this.http
+      .get<AuthResponse>(environment.baseApiUri + '/api/auth/me')
+      .pipe(
+        tap(({ user }) => this.setUser(user)),
+        pluck('user')
+      );
   }
 
   signOut(): void {
