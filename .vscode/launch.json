@@ -1,11 +1,19 @@
 {
   "version": "0.2.0",
   "configurations": [{
-      "name": "ng serve",
+      "name": "ng serve frontend",
       "type": "chrome",
       "request": "launch",
       "url": "http://localhost:4200",
       "webRoot": "${workspaceFolder}/angular-client"
+    },
+    {
+      "name": "npm dev api",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/express-server",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run-script", "dev"]
     }
   ]
 }
